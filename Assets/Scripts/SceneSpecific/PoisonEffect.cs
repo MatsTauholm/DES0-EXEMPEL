@@ -18,7 +18,7 @@ public class PoisonEffect : MonoBehaviour
     void Start()
     {
         v = GetComponent<Volume>();
-        v.profile.TryGet(out chromaticAberration);
+        v.profile.TryGet(out chromaticAberration); //Referenser till de specifika effekterna
         v.profile.TryGet(out colorAdjustments);
     }
 
@@ -26,10 +26,11 @@ public class PoisonEffect : MonoBehaviour
     {
         if (poisioned)
         {
-            float oscillatingValue = Mathf.Sin(Time.time * oscillationSpeed) * 0.5f + 0.5f;
+            float oscillatingValue = Mathf.Sin(Time.time * oscillationSpeed) * 0.5f + 0.5f; //Matematiskformel för att värdet ska loopa mellan 0-1)
             chromaticAberration.intensity.value = oscillatingValue;
             colorAdjustments.postExposure.value = oscillatingValue;
 
+            //Hueshift går från 0-180, sedan vill jag att den ska gå tillbaka till 0 igen för att få "bäst" effekt
             if (x <= 180)
             {
                 colorAdjustments.hueShift.value = x;
@@ -46,7 +47,6 @@ public class PoisonEffect : MonoBehaviour
         { 
             poisioned = true;
             Debug.Log("Player is poisoned!");
-            //Destroy(gameObject);
         }
     }
 }
