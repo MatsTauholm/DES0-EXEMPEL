@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+        if (isGrounded)
+        ChangeAnimationState(PLAYER_RUN);
     }
 
     void OnJump()
@@ -50,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //isGrounded = rb.IsTouching(groundFilter);
         
-        if (moveInput.Equals(Vector2.zero))
+        if (moveInput.Equals(Vector2.zero) && isGrounded)
         {
             ChangeAnimationState(PLAYER_IDLE);
         }
@@ -76,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && shouldJump)
         {
             rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
+            ChangeAnimationState(PLAYER_JUMP);
             shouldJump = false;
         }         
     }
