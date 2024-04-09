@@ -31,11 +31,6 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void SetStartPos(float newPosX, float newPosY)
-    {
-        transform.position = new Vector3(newPosX,newPosY);
-    }
-
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
@@ -58,18 +53,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void ChangeAnimationState(string newState)
-    {
-        //Stoppa samma animation från att avbryta sig själv
-        if (currentState == newState) return;
-
-        //Spela animationen
-        animator.Play(newState);
-
-        //Uppdatera den nuvarande animationen
-        currentState = newState;
-    }
-
     void FixedUpdate()
     {
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
@@ -81,6 +64,18 @@ public class PlayerMovement : MonoBehaviour
             ChangeAnimationState(PLAYER_JUMP);
             shouldJump = false;
         }         
+    }
+
+    void ChangeAnimationState(string newState)
+    {
+        //Stoppa samma animation från att avbryta sig själv
+        if (currentState == newState) return;
+
+        //Spela animationen
+        animator.Play(newState);
+
+        //Uppdatera den nuvarande animationen
+        currentState = newState;
     }
 
 }
