@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class MouseTarget : MonoBehaviour
 {
+	[SerializeField] bool ClickToMove = false;
 	TargetJoint2D targetJoint;
 
 	void Start()
@@ -19,16 +20,35 @@ public class MouseTarget : MonoBehaviour
 			return;
 	} 
 
+	void OnFire()
+    {
+        if (ClickToMove)
+        {
+            // Finish if no joint detected.
+            if (targetJoint == null)
+                return;
+
+            // Calculate the world position for the mouse.
+            var worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            // Set the joint target.
+            targetJoint.target = worldPos;
+        }
+    }
+
 	void FixedUpdate ()
 	{
-		// Finish if no joint detected.
-		if (targetJoint == null)
-			return;
+        if (ClickToMove == false)
+        {
+            // Finish if no joint detected.
+            if (targetJoint == null)
+                return;
 
-		// Calculate the world position for the mouse.
-		var worldPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+            // Calculate the world position for the mouse.
+            var worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-		// Set the joint target.
-		targetJoint.target = worldPos;
+            // Set the joint target.
+            targetJoint.target = worldPos;
+        }
 	}
 }
