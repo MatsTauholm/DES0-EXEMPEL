@@ -20,10 +20,8 @@ public class MouseTarget : MonoBehaviour
 			return;
 	} 
 
-	void OnFire()
+	public void MoveToMousePosition()
     {
-        if (ClickToMove)
-        {
             // Finish if no joint detected.
             if (targetJoint == null)
                 return;
@@ -33,7 +31,7 @@ public class MouseTarget : MonoBehaviour
 
             // Set the joint target.
             targetJoint.target = worldPos;
-        }
+
     }
 
 	void FixedUpdate ()

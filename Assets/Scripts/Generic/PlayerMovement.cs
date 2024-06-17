@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpImpulse = 5f;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float jumpImpulse = 5f;
+    [SerializeField] GameObject targetJointBall;
 
     public ContactFilter2D groundFilter;
     private Vector2 moveInput;
@@ -47,6 +48,12 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
+
+    void OnFire()
+    {
+        targetJointBall.GetComponent<MouseTarget>().MoveToMousePosition();
+    }
+
     private void Update()
     {
         //isGrounded = rb.IsTouching(groundFilter);
