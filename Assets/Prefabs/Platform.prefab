@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -93394993
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
@@ -96,7 +96,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2268624304654919845}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: c2bd0a6739c7e7643974cb980c822204, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

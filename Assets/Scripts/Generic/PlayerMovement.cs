@@ -5,16 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float jumpImpulse = 5f;
-    [SerializeField] GameObject targetJointBall;
+    public float moveSpeed = 5f;
+    public float jumpImpulse = 5f;
 
     public ContactFilter2D groundFilter;
     private Vector2 moveInput;
     private Rigidbody2D rb;
     Animator animator;
-
-    private bool isGrounded => rb.IsTouching(groundFilter);
+    MouseTarget mouseTarget;
+    private bool isGrounded;
     private bool shouldJump;
     private string currentState;
 
@@ -30,41 +29,33 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        mouseTarget = GameObject.FindObjectOfType<MouseTarget>();
     }
 
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
-        if (isGrounded) {
-            ChangeAnimationState(PLAYER_RUN);  
-        }
-        
+        if (isGrounded)
+        ChangeAnimationState(PLAYER_RUN);
     }
 
     void OnJump()
     {
-        if (isGrounded) {
-            shouldJump = true;
-        }
-        
+        if (isGrounded)
+        shouldJump = true;
     }
 
     void OnFire()
     {
-        targetJointBall.GetComponent<MouseTarget>().MoveToMousePosition();
+        mouseTarget.MoveToMousePosition();
     }
-
     private void Update()
     {
-        //isGrounded = rb.IsTouching(groundFilter);
-
+        isGrounded = rb.IsTouching(groundFilter);  //Check if player stands on ground
+        
         if (moveInput.Equals(Vector2.zero) && isGrounded)
         {
             ChangeAnimationState(PLAYER_IDLE);
-        }
-        else
-        {
-            transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);
         }
     }
 
@@ -73,7 +64,15 @@ public class PlayerMovement : MonoBehaviour
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
         rb.velocity = playerVelocity;
 
-        if (isGrounded && shouldJump) {
+        //Mirror the sprite if moving left
+        if (moveInput.x != 0)
+        {
+            transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);
+        }
+        
+        //Jump function
+        if (isGrounded && shouldJump)
+        {
             rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
             ChangeAnimationState(PLAYER_JUMP);
             shouldJump = false;
@@ -82,13 +81,13 @@ public class PlayerMovement : MonoBehaviour
 
     void ChangeAnimationState(string newState)
     {
-        //Stoppa samma animation från att avbryta sig själv
+        //Stop the same animation from over writhing it self
         if (currentState == newState) return;
 
-        //Spela animationen
+        //Play animation
         animator.Play(newState);
 
-        //Uppdatera den nuvarande animationen
+        //Update current animation
         currentState = newState;
     }
 
