@@ -397,7 +397,7 @@ FrictionJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 30.941677, y: -1.5}
   m_MaxForce: 1
-  m_MaxTorque: 1
+  m_MaxTorque: 3
 --- !u!4 &58379152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4671115665440738405, guid: 073e19df29517944fab146422a742641,
@@ -433,7 +433,7 @@ HingeJoint2D:
     m_MaximumMotorForce: 10
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: 0
+    m_LowerAngle: -1.9579473
     m_UpperAngle: 89.99985
 --- !u!1 &93476647
 GameObject:
@@ -3083,7 +3083,7 @@ PrefabInstance:
     - target: {fileID: 9033252953569890042, guid: f960b22fc71e22b41a8ef2412a79350c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: 53.9
       objectReference: {fileID: 0}
     - target: {fileID: 9033252953569890042, guid: f960b22fc71e22b41a8ef2412a79350c,
         type: 3}
@@ -3850,7 +3850,7 @@ DistanceJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -3.0584342, y: 0.37767205}
+  m_ConnectedAnchor: {x: 0.05273176, y: 0.37767205}
   m_AutoConfigureDistance: 0
   m_Distance: 3
   m_MaxDistanceOnly: 1
@@ -3877,7 +3877,7 @@ FrictionJoint2D:
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 24.191677, y: -1.5}
-  m_MaxForce: 10
+  m_MaxForce: 29
   m_MaxTorque: 1
 --- !u!4 &1342198604 stripped
 Transform:
@@ -4306,7 +4306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4466296256582546, guid: 8079363d4482b034a97e0c2e8bfed93e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.058434
+      value: 0.052731752
       objectReference: {fileID: 0}
     - target: {fileID: 4466296256582546, guid: 8079363d4482b034a97e0c2e8bfed93e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4348,6 +4348,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 50179722466569718, guid: 8079363d4482b034a97e0c2e8bfed93e,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 50179722466569718, guid: 8079363d4482b034a97e0c2e8bfed93e,
         type: 3}
@@ -5584,7 +5589,7 @@ PrefabInstance:
     - target: {fileID: 41997124792182512, guid: 9cd3160d50df9dc41a8d54655c291e87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: 53.9
       objectReference: {fileID: 0}
     - target: {fileID: 41997124792182512, guid: 9cd3160d50df9dc41a8d54655c291e87,
         type: 3}
@@ -5594,7 +5599,7 @@ PrefabInstance:
     - target: {fileID: 2756873868678508122, guid: 9cd3160d50df9dc41a8d54655c291e87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: 53.9
       objectReference: {fileID: 0}
     - target: {fileID: 2756873868678508122, guid: 9cd3160d50df9dc41a8d54655c291e87,
         type: 3}

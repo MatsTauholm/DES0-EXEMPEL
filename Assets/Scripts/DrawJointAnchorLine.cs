@@ -18,7 +18,9 @@ public class DrawJointAnchorLine : MonoBehaviour
 			// Fetch the connected joint anchor in world-space.
 			var connectedAnchor = m_Joint.anchor;
 			if (m_Joint.connectedBody)
-				connectedAnchor = m_Joint.connectedBody.transform.TransformPoint (connectedAnchor);
+			{
+				connectedAnchor = m_Joint.connectedBody.transform.TransformPoint(connectedAnchor);
+			}
 
 			// Draw the line between the anchor and connected anchor positions.
 			Debug.DrawLine (anchor, connectedAnchor, m_Color);
