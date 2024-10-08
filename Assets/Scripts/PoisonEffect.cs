@@ -6,8 +6,8 @@ using UnityEngine.Rendering.Universal; //För att få tillgång till postprocess ef
 
 public class PoisonEffect : MonoBehaviour
 {
-    private Volume v;
-    private ChromaticAberration chromaticAberration;
+    private Volume v; //Deklaration av volymen
+    private ChromaticAberration chromaticAberration; //Deklaration av specifika effekter
     private ColorAdjustments colorAdjustments;
     public float oscillationSpeed = 2f;
     private float x = 0;
@@ -41,7 +41,7 @@ public class PoisonEffect : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         { 
