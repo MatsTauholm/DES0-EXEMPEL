@@ -8,14 +8,15 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpImpulse = 5f;
 
-    public ContactFilter2D groundFilter;
     private Vector2 moveInput;
     private Rigidbody2D rb;
     Animator animator;
     MouseTarget mouseTarget;
-    private bool isGrounded;
     private bool shouldJump;
     private string currentState;
+
+    Collider2D bodyColl;
+    Collider2D feetColl;
 
     //Animation states
     const string PLAYER_IDLE = "P_Idle";
@@ -49,10 +50,12 @@ public class PlayerMovement : MonoBehaviour
     {
         mouseTarget.MoveToMousePosition();
     }
+
+
+
+
     private void Update()
-    {
-        isGrounded = rb.IsTouching(groundFilter);  //Check if player stands on ground
-        
+    { 
         if (moveInput.Equals(Vector2.zero) && isGrounded)
         {
             ChangeAnimationState(PLAYER_IDLE);
@@ -71,12 +74,17 @@ public class PlayerMovement : MonoBehaviour
         }
         
         //Jump function
-        if (isGrounded && shouldJump)
+        if (isGrounded() && shouldJump)
         {
             rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
             ChangeAnimationState(PLAYER_JUMP);
             shouldJump = false;
         }         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
     }
 
     void ChangeAnimationState(string newState)
