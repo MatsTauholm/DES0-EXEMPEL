@@ -5,18 +5,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpImpulse = 5f;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float jumpForce = 5f;
+    [SerializeField] ContactFilter2D groundFilter;
 
-    private Vector2 moveInput;
-    private Rigidbody2D rb;
+    Rigidbody2D rb;
     Animator animator;
     MouseTarget mouseTarget;
-    private bool shouldJump;
-    private string currentState;
-
     Collider2D bodyColl;
     Collider2D feetColl;
+
+    Vector2 moveInput;
+    bool shouldJump;
+    bool isGrounded;
+    string currentState;
 
     //Animation states
     const string PLAYER_IDLE = "P_Idle";
@@ -51,11 +53,9 @@ public class PlayerMovement : MonoBehaviour
         mouseTarget.MoveToMousePosition();
     }
 
-
-
-
     private void Update()
-    { 
+    {
+        
         if (moveInput.Equals(Vector2.zero) && isGrounded)
         {
             ChangeAnimationState(PLAYER_IDLE);
@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        isGrounded = rb.IsTouching(groundFilter);
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
         rb.velocity = playerVelocity;
 
@@ -74,17 +75,12 @@ public class PlayerMovement : MonoBehaviour
         }
         
         //Jump function
-        if (isGrounded() && shouldJump)
+        if (isGrounded && shouldJump)
         {
-            rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             ChangeAnimationState(PLAYER_JUMP);
             shouldJump = false;
         }         
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
     }
 
     void ChangeAnimationState(string newState)
