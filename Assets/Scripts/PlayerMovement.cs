@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     MouseTarget mouseTarget;
     Collider2D bodyColl;
     Collider2D feetColl;
+    ParticleSystem dust;
 
     Vector2 moveInput;
     bool shouldJump;
@@ -21,11 +23,9 @@ public class PlayerMovement : MonoBehaviour
     string currentState;
 
     //Animation states
-    const string PLAYER_IDLE = "P_Idle";
-    const string PLAYER_RUN = "P_Run";
-    const string PLAYER_ATTACK = "P_Attack";
-    const string PLAYER_DEAD = "P_Dead";
-    const string PLAYER_JUMP = "P_Jump";
+    const string PLAYER_IDLE = "Player_Idle";
+    const string PLAYER_RUN = "Player_Run";
+    const string PLAYER_JUMP = "Player_Jump";
 
 
     void Start()
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         mouseTarget = GameObject.FindObjectOfType<MouseTarget>();
+        dust = GetComponentInChildren<ParticleSystem>();
     }
 
     void OnMove(InputValue value)
@@ -80,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             ChangeAnimationState(PLAYER_JUMP);
             shouldJump = false;
+            dust.Play();
         }         
     }
 
