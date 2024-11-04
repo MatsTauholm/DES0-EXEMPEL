@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpImpulse = 5f;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float jumpForce = 5f;
+    [SerializeField] ContactFilter2D groundFilter;
 
-    public ContactFilter2D groundFilter;
-    private Vector2 moveInput;
-    private Rigidbody2D rb;
+    Rigidbody2D rb;
     Animator animator;
     MouseTarget mouseTarget;
-    private bool isGrounded;
-    private bool shouldJump;
-    private string currentState;
+    Collider2D bodyColl;
+    Collider2D feetColl;
+    ParticleSystem dust;
+
+    Vector2 moveInput;
+    bool shouldJump;
+    bool isGrounded;
+    string currentState;
 
     //Animation states
-    const string PLAYER_IDLE = "P_Idle";
-    const string PLAYER_RUN = "P_Run";
-    const string PLAYER_ATTACK = "P_Attack";
-    const string PLAYER_DEAD = "P_Dead";
-    const string PLAYER_JUMP = "P_Jump";
+    const string PLAYER_IDLE = "Player_Idle";
+    const string PLAYER_RUN = "Player_Run";
+    const string PLAYER_JUMP = "Player_Jump";
 
 
     void Start()
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         mouseTarget = GameObject.FindObjectOfType<MouseTarget>();
+        dust = GetComponentInChildren<ParticleSystem>();
     }
 
     void OnMove(InputValue value)
@@ -49,9 +53,9 @@ public class PlayerMovement : MonoBehaviour
     {
         mouseTarget.MoveToMousePosition();
     }
+
     private void Update()
     {
-        isGrounded = rb.IsTouching(groundFilter);  //Check if player stands on ground
         
         if (moveInput.Equals(Vector2.zero) && isGrounded)
         {
@@ -61,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        isGrounded = rb.IsTouching(groundFilter);
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
         rb.velocity = playerVelocity;
 
@@ -73,9 +78,10 @@ public class PlayerMovement : MonoBehaviour
         //Jump function
         if (isGrounded && shouldJump)
         {
-            rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             ChangeAnimationState(PLAYER_JUMP);
             shouldJump = false;
+            dust.Play();
         }         
     }
 

@@ -3075,20 +3075,55 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2740503567310785759, guid: f960b22fc71e22b41a8ef2412a79350c,
+        type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5535971030466303019, guid: f960b22fc71e22b41a8ef2412a79350c,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6114103726749625866, guid: f960b22fc71e22b41a8ef2412a79350c,
+        type: 3}
+      propertyPath: boxSize.x
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114103726749625866, guid: f960b22fc71e22b41a8ef2412a79350c,
+        type: 3}
+      propertyPath: boxSize.y
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114103726749625866, guid: f960b22fc71e22b41a8ef2412a79350c,
+        type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114103726749625866, guid: f960b22fc71e22b41a8ef2412a79350c,
+        type: 3}
+      propertyPath: castDistance
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114103726749625866, guid: f960b22fc71e22b41a8ef2412a79350c,
+        type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114103726749625866, guid: f960b22fc71e22b41a8ef2412a79350c,
+        type: 3}
+      propertyPath: groundFilter.useNormalAngle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9033252953569890042, guid: f960b22fc71e22b41a8ef2412a79350c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -7.829
       objectReference: {fileID: 0}
     - target: {fileID: 9033252953569890042, guid: f960b22fc71e22b41a8ef2412a79350c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.090392
+      value: -3.251
       objectReference: {fileID: 0}
     - target: {fileID: 9033252953569890042, guid: f960b22fc71e22b41a8ef2412a79350c,
         type: 3}
@@ -3568,9 +3603,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &1245397019
 SpriteRenderer:
@@ -5589,22 +5624,22 @@ PrefabInstance:
     - target: {fileID: 41997124792182512, guid: 9cd3160d50df9dc41a8d54655c291e87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -7.829
       objectReference: {fileID: 0}
     - target: {fileID: 41997124792182512, guid: 9cd3160d50df9dc41a8d54655c291e87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2003921
+      value: -1.361
       objectReference: {fileID: 0}
     - target: {fileID: 2756873868678508122, guid: 9cd3160d50df9dc41a8d54655c291e87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -7.829
       objectReference: {fileID: 0}
     - target: {fileID: 2756873868678508122, guid: 9cd3160d50df9dc41a8d54655c291e87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2003921
+      value: -1.361
       objectReference: {fileID: 0}
     - target: {fileID: 3229868075895350751, guid: 9cd3160d50df9dc41a8d54655c291e87,
         type: 3}
