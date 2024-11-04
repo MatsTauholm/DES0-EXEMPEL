@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         mouseTarget = GameObject.FindObjectOfType<MouseTarget>();
-        dust = GetComponentInChildren<ParticleSystem>();
+        dust = GetComponentInChildren<ParticleSystem>(); 
     }
 
     void OnMove(InputValue value)
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             ChangeAnimationState(PLAYER_JUMP);
             shouldJump = false;
-            dust.Play();
+            dust.Play(); //Play particle effect
         }         
     }
 

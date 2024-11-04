@@ -1263,7 +1263,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 1.5
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1607,7 +1607,7 @@ ParticleSystem:
         ctime5: 42791
         ctime6: 53199
         ctime7: 64379
-        atime0: 47031
+        atime0: 56861
         atime1: 65535
         atime2: 0
         atime3: 0
@@ -1625,7 +1625,7 @@ ParticleSystem:
         key1: {r: 1, g: 0.4545657, b: 0.17254901, a: 0}
         key2: {r: 0.9595888, g: 1, b: 0.2941177, a: 0}
         key3: {r: 0.61095303, g: 1, b: 0.427451, a: 0}
-        key4: {r: 0, g: 0.1802348, b: 0.6037736, a: 0}
+        key4: {r: 0, g: 1, b: 0.32908177, a: 0}
         key5: {r: 0, g: 0.8542309, b: 1, a: 0}
         key6: {r: 1, g: 0, b: 0.95441294, a: 0}
         key7: {r: 1, g: 0, b: 0.60242796, a: 0}
@@ -9960,13 +9960,13 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
-  m_VelocityScale: 0.06
+  m_VelocityScale: 0
   m_LengthScale: 2
   m_SortingFudge: 0
   m_NormalDirection: 1
@@ -13591,7 +13591,7 @@ ParticleSystem:
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -14734,11 +14734,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4721923257449676, guid: de56f1443e496f4408095248d6b6f0fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.93
+      value: 5.28
       objectReference: {fileID: 0}
     - target: {fileID: 4721923257449676, guid: de56f1443e496f4408095248d6b6f0fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.83
+      value: 3.61
       objectReference: {fileID: 0}
     - target: {fileID: 4721923257449676, guid: de56f1443e496f4408095248d6b6f0fd, type: 3}
       propertyPath: m_LocalPosition.z

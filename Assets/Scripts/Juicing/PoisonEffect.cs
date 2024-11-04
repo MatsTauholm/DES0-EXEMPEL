@@ -6,13 +6,14 @@ using UnityEngine.Rendering.Universal; //För att få tillgång till postprocess ef
 
 public class PoisonEffect : MonoBehaviour
 {
-    private Volume v; //Deklaration av volymen
-    private ChromaticAberration chromaticAberration; //Deklaration av specifika effekter
-    private ColorAdjustments colorAdjustments;
-    public float oscillationSpeed = 2f;
-    private float x = 0;
-    public float hueSpeed;
+    Volume v; //Deklaration av volymen
+    ChromaticAberration chromaticAberration; //Deklaration av specifika effekter
+    ColorAdjustments colorAdjustments;
 
+    [SerializeField] float oscillationSpeed = 2f;
+    [SerializeField] float hueSpeed;
+
+    float x = 0;
     private bool poisioned = false;
 
     void Start()
@@ -26,7 +27,7 @@ public class PoisonEffect : MonoBehaviour
     {
         if (poisioned)
         {
-            float oscillatingValue = Mathf.Sin(Time.time * oscillationSpeed) * 0.5f + 0.5f; //Matematiskformel för att värdet ska loopa mellan 0-1)
+            float oscillatingValue = Mathf.Sin(Time.time * oscillationSpeed) * 0.5f + 0.5f; //Matematiskformel för att loopa värdet mellan 0-1)
             chromaticAberration.intensity.value = oscillatingValue;
             colorAdjustments.postExposure.value = oscillatingValue;
 
