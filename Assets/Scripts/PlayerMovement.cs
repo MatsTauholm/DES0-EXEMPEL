@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             ChangeAnimationState(PLAYER_JUMP);
             shouldJump = false;
-            dust.Play(); //Play particle effect
+            //dust.Play(); //Play particle effect
         }         
     }
 
