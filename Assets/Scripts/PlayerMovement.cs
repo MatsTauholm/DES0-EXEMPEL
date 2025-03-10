@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ContactFilter2D groundFilter;
 
     Rigidbody2D rb;
-    Animator animator;
+    Animator ani;
     MouseTarget mouseTarget;
     Collider2D bodyColl;
     Collider2D feetColl;
@@ -20,18 +20,16 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     bool shouldJump;
     bool isGrounded;
-    string currentState;
 
     //Animation states
-    const string PLAYER_IDLE = "Player_Idle";
-    const string PLAYER_RUN = "Player_Run";
-    const string PLAYER_JUMP = "Player_Jump";
+    const string PLAYER_RUN = "isRunning";
+    const string PLAYER_JUMP = "isJumping";
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        ani = GetComponent<Animator>();
         mouseTarget = GameObject.FindObjectOfType<MouseTarget>();
         dust = GetComponentInChildren<ParticleSystem>(); 
     }
@@ -39,8 +37,15 @@ public class PlayerMovement : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
-        if (isGrounded)
-        ChangeAnimationState(PLAYER_RUN);
+        if (moveInput != Vector2.zero && isGrounded)
+        {
+            ani.SetBool(PLAYER_RUN, true);
+        }
+        else
+        {
+            ani.SetBool(PLAYER_RUN, false);
+        }
+        
     }
 
     void OnJump()
@@ -51,15 +56,15 @@ public class PlayerMovement : MonoBehaviour
 
     void OnFire()
     {
+        if(mouseTarget != null)
         mouseTarget.MoveToMousePosition();
     }
 
-    private void Update()
+    void Update()
     {
-        
-        if (moveInput.Equals(Vector2.zero) && isGrounded)
+        if (isGrounded)
         {
-            ChangeAnimationState(PLAYER_IDLE);
+            ani.SetBool(PLAYER_JUMP, false);
         }
     }
 
@@ -79,22 +84,12 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && shouldJump)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            ChangeAnimationState(PLAYER_JUMP);
+            ani.SetBool(PLAYER_JUMP, true);
+            isGrounded = false;
             shouldJump = false;
             //dust.Play(); //Play particle effect
-        }         
+        }
+
+     
     }
-
-    void ChangeAnimationState(string newState)
-    {
-        //Stop the same animation from over writhing it self
-        if (currentState == newState) return;
-
-        //Play animation
-        animator.Play(newState);
-
-        //Update current animation
-        currentState = newState;
-    }
-
 }

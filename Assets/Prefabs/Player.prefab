@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  jumpForce: 5
+  jumpForce: 10
   groundFilter:
     useTriggers: 0
     useLayerMask: 1
@@ -174,8 +174,8 @@ MonoBehaviour:
       m_Bits: 528
     minDepth: 0
     maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
+    minNormalAngle: 45
+    maxNormalAngle: 135
 --- !u!95 &7139958115561519484
 Animator:
   serializedVersion: 5
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5535971030466303019}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
   m_Name: 
@@ -274,7 +274,7 @@ MonoBehaviour:
   - {x: -0.023829937, y: -0.3330524, z: 0}
   m_ShapePathHash: 890393473
   m_Mesh: {fileID: 0}
-  m_InstanceId: 42676
+  m_InstanceId: -4098
   m_LocalBounds:
     m_Center: {x: 0.080156624, y: -0.03578365, z: 0}
     m_Extent: {x: 0.29898363, y: 0.4893762, z: 0}
