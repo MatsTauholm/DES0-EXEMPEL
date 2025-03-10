@@ -66,20 +66,22 @@ public class PlayerMovement : MonoBehaviour
         {
             ani.SetBool(PLAYER_JUMP, false);
         }
-    }
 
-    void FixedUpdate()
-    {
-        isGrounded = rb.IsTouching(groundFilter);
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
-        rb.velocity = playerVelocity;
+        //rb.velocity = playerVelocity;
+        rb.position += playerVelocity * Time.unscaledDeltaTime;
 
         //Mirror the sprite if moving left
         if (moveInput.x != 0)
         {
             transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);
         }
-        
+    }
+
+    void FixedUpdate()
+    {
+        isGrounded = rb.IsTouching(groundFilter);
+
         //Jump function
         if (isGrounded && shouldJump)
         {
@@ -89,7 +91,5 @@ public class PlayerMovement : MonoBehaviour
             shouldJump = false;
             //dust.Play(); //Play particle effect
         }
-
-     
     }
 }
