@@ -5,6 +5,7 @@ using UnityEngine;
 public class TimeChange : MonoBehaviour
 {
     float defaultFixedDeltaTime;
+
     void Start()
     {
         defaultFixedDeltaTime = Time.fixedDeltaTime;
@@ -14,12 +15,12 @@ public class TimeChange : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            Time.timeScale = 0.2f;
-            Time.fixedDeltaTime = defaultFixedDeltaTime * Time.timeScale;
+            Time.timeScale = 0.2f; //Slowdown time
+            Time.fixedDeltaTime = defaultFixedDeltaTime * Time.timeScale; //Make sure that fixedDeltaTime also scales since this does not happen automaticly
         }
         else if (Input.GetKeyUp(KeyCode.Q))
         {
-            Time.timeScale = 1f;
+            Time.timeScale = 1f; //Reset to default 
         }
     }
 }

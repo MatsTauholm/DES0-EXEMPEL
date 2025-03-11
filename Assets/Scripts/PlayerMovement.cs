@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
         //rb.velocity = playerVelocity;
-        rb.position += playerVelocity * Time.unscaledDeltaTime;
+        rb.position += playerVelocity * Time.unscaledDeltaTime; //
 
         //Mirror the sprite if moving left
         if (moveInput.x != 0)
