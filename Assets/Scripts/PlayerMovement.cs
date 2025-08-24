@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
             ani.SetBool(PLAYER_JUMP, false);
         }
 
-        Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+        Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
         //rb.velocity = playerVelocity;
         rb.position += playerVelocity * Time.unscaledDeltaTime; //
 
