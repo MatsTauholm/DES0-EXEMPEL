@@ -6,7 +6,9 @@ using Unity.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float acceleration = 50f;     // Force when pressing a direction
+    [SerializeField] float deceleration = 30f;     // Force when no input, slows down
+    [SerializeField] float maxSpeed = 10f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] ContactFilter2D groundFilter;
 
@@ -36,16 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        moveInput = value.Get<Vector2>();
-        if (moveInput != Vector2.zero && isGrounded)
-        {
-            ani.SetBool(PLAYER_RUN, true);
-        }
-        else
-        {
-            ani.SetBool(PLAYER_RUN, false);
-        }
-        
+        moveInput = value.Get<Vector2>(); 
     }
 
     void OnJump()
@@ -62,34 +55,46 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (isGrounded)
-        {
-            ani.SetBool(PLAYER_JUMP, false);
-        }
-
-        Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
-        //rb.velocity = playerVelocity;
-        rb.position += playerVelocity * Time.unscaledDeltaTime; //
-
         //Mirror the sprite if moving left
         if (moveInput.x != 0)
         {
             transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);
         }
+
+        ani.SetBool(PLAYER_RUN, moveInput != Vector2.zero);
+        ani.SetBool(PLAYER_JUMP, !isGrounded);
     }
 
     void FixedUpdate()
     {
+        //Ground check
         isGrounded = rb.IsTouching(groundFilter);
 
         //Jump function
         if (isGrounded && shouldJump)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            ani.SetBool(PLAYER_JUMP, true);
             isGrounded = false;
             shouldJump = false;
             //dust.Play(); //Play particle effect
+        }
+        
+        //Horizontal movement
+        if (moveInput.x != 0)
+        {
+            //Accelerate
+            rb.AddForce(new Vector2(moveInput.x * acceleration, 0f), ForceMode2D.Force);
+        }
+        else
+        {
+            //Decelerate
+            rb.AddForce(new Vector2(-rb.linearVelocity.x * deceleration, 0f), ForceMode2D.Force);
+        }
+
+           // Clamp max horizontal velocity
+        if (Mathf.Abs(rb.linearVelocity.x) > maxSpeed)
+        {
+            rb.linearVelocity = new Vector2(Mathf.Sign(rb.linearVelocity.x) * maxSpeed, rb.linearVelocity.y);
         }
     }
 }
