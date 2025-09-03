@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
-        mouseTarget = GameObject.FindObjectOfType<MouseTarget>();
+        mouseTarget = GameObject.FindFirstObjectByType<MouseTarget>();
         dust = GetComponentInChildren<ParticleSystem>(); 
     }
 
