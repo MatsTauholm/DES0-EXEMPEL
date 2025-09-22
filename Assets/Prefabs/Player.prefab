@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2740503567310785759}
   - component: {fileID: 1907320706202359928}
   - component: {fileID: 5392074630233171007}
-  - component: {fileID: 6114103726749625866}
   - component: {fileID: 7139958115561519484}
   - component: {fileID: 4115761823485753335}
   - component: {fileID: 6326565605294454351}
+  - component: {fileID: 197422230905949207}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -154,36 +154,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6114103726749625866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5535971030466303019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 432b00637280cb444952c9391668e15d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceleration: 50
-  deceleration: 30
-  maxSpeed: 10
-  jumpForce: 20
-  groundFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 528
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 45
-    maxNormalAngle: 135
 --- !u!95 &7139958115561519484
 Animator:
   serializedVersion: 7
@@ -310,3 +280,33 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &197422230905949207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5535971030466303019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9c074704848d049ba35bba2835b64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementExtra
+  acceleration: 50
+  deceleration: 30
+  maxSpeed: 10
+  jumpForce: 20
+  groundFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 528
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 45
+    maxNormalAngle: 135

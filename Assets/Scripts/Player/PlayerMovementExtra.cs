@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Rendering.Universal;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementExtra : MonoBehaviour
 {
     [SerializeField] float acceleration = 50f;     // Force when pressing a direction
     [SerializeField] float deceleration = 30f;     // Force when no input, slows down
@@ -13,14 +13,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ContactFilter2D groundFilter;
 
     Rigidbody2D rb;
+    Animator ani;
+    MouseTarget mouseTarget;
+    Collider2D bodyColl;
+    Collider2D feetColl;
+    ParticleSystem dust;
 
     Vector2 moveInput;
     bool shouldJump;
     bool isGrounded;
 
+    //Animation states
+    const string PLAYER_RUN = "isRunning";
+    const string PLAYER_JUMP = "isJumping";
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ani = GetComponent<Animator>();
+        mouseTarget = GameObject.FindFirstObjectByType<MouseTarget>();
+        dust = GetComponentInChildren<ParticleSystem>(); 
     }
 
     void OnMove(InputValue value)
@@ -34,6 +47,12 @@ public class PlayerMovement : MonoBehaviour
         shouldJump = true;
     }
 
+    void OnFire()
+    {
+        if(mouseTarget != null)
+        mouseTarget.MoveToMousePosition();
+    }
+
     void Update()
     {
         //Mirror the sprite if moving left
@@ -41,6 +60,9 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);
         }
+
+        ani.SetBool(PLAYER_RUN, moveInput != Vector2.zero);
+        ani.SetBool(PLAYER_JUMP, !isGrounded);
     }
 
     void FixedUpdate()
@@ -54,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isGrounded = false;
             shouldJump = false;
+            //dust.Play(); //Play particle effect
         }
         
         //Horizontal movement
