@@ -15,8 +15,6 @@ public class PlayerMovementExtra : MonoBehaviour
     Rigidbody2D rb;
     Animator ani;
     MouseTarget mouseTarget;
-    Collider2D bodyColl;
-    Collider2D feetColl;
     ParticleSystem dust;
 
     Vector2 moveInput;
@@ -70,7 +68,12 @@ public class PlayerMovementExtra : MonoBehaviour
         //Ground check
         isGrounded = rb.IsTouching(groundFilter);
 
-        //Jump function
+        Move();
+        Jump();
+    }
+
+    private void Jump()
+    {
         if (isGrounded && shouldJump)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -78,7 +81,10 @@ public class PlayerMovementExtra : MonoBehaviour
             shouldJump = false;
             //dust.Play(); //Play particle effect
         }
-        
+    }
+
+    private void Move()
+    {
         //Horizontal movement
         if (moveInput.x != 0)
         {
@@ -91,7 +97,7 @@ public class PlayerMovementExtra : MonoBehaviour
             rb.AddForce(new Vector2(-rb.linearVelocity.x * deceleration, 0f), ForceMode2D.Force);
         }
 
-           // Clamp max horizontal velocity
+        // Clamp max horizontal velocity
         if (Mathf.Abs(rb.linearVelocity.x) > maxSpeed)
         {
             rb.linearVelocity = new Vector2(Mathf.Sign(rb.linearVelocity.x) * maxSpeed, rb.linearVelocity.y);
