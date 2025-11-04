@@ -66,8 +66,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         isGrounded = rb.IsTouching(groundFilter);
-        Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
-        rb.velocity = playerVelocity;
+        Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = playerVelocity;
 
         //Mirror the sprite if moving left
         if (moveInput.x != 0)
