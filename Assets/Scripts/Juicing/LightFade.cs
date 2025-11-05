@@ -5,10 +5,10 @@ using UnityEngine.Rendering.Universal;
 
 public class LightFade : MonoBehaviour
 {
-    public Light2D light2D;
-    public float minIntensity = 0.5f;
-    public float maxIntensity = 1.5f;
-    public float fadeSpeed = 0.1f;
+    private Light2D light2D;
+    [SerializeField] float minIntensity = 0.5f;
+    [SerializeField] float maxIntensity = 1.5f;
+    [SerializeField] float fadeSpeed = 0.1f;
 
     private void Start()
     {

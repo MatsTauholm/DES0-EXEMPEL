@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal; //Namespace for lightsettings
 
 public class LightFlicker : MonoBehaviour
-{
-    public Light2D light2D;
-    public float flickerIntervalMin = 0.05f;  // Minimum time between flickers
-    public float flickerIntervalMax = 0.5f;   // Maximum time between flickers
-    public float onIntensity = 1.5f;          // Light intensity when "on"
-    public float offIntensity = 0.0f;         // Light intensity when "off"
+{    
+    [SerializeField] float flickerIntervalMin = 0.05f;  // Minimum time between flickers
+    [SerializeField] float flickerIntervalMax = 0.5f;   // Maximum time between flickers
+    [SerializeField] float onIntensity = 1.5f;          // Light intensity when "on"
+    [SerializeField] float offIntensity = 0.0f;         // Light intensity when "off"
 
+    private Light2D light2D;
     private float timer;
 
     private void Start()
