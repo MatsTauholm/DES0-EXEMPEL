@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "name": "DES0",
+    "name": "DES01",
     "maps": [
         {
             "name": "Player",
@@ -744,6 +744,34 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Developer",
+            "id": "3027c5a3-242e-45e2-8ea7-0a2e998ad09f",
+            "actions": [
+                {
+                    "name": "Restart",
+                    "type": "Button",
+                    "id": "461de5a7-c732-4972-b54b-fe6a71893bea",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "67094d78-1a10-4c07-85fa-714cd95e75f3",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
